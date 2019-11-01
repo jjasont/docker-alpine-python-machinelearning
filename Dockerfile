@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-python3
+FROM jjasont/docker-alpine-python3
 
 RUN apk add --no-cache \
         --virtual=.build-dependencies \
@@ -8,10 +8,13 @@ RUN apk add --no-cache \
     \
     ln -s locale.h /usr/include/xlocale.h && \
     \
+    pip install Cython && \
     pip install numpy && \
     pip install pandas && \
     pip install scipy && \
     pip install scikit-learn && \
+    pip install fasttext && \
+    
     \
     rm -r /root/.cache && \
     find /usr/lib/python3.*/ -name 'tests' -exec rm -r '{}' + && \
